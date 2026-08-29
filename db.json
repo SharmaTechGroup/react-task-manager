@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "user_id": "john123",
+      "user_name": "john",
+      "password": "john",
+      "email": "john@gmail.com",
+      "id": "kqFw3yvJ3-U"
+    },
+    {
+      "user_id": "sanjay_kumar",
+      "user_name": "Sanjay Kumar",
+      "password": "sanjay",
+      "email": "sanjay@gmail.com",
+      "id": "b4zRwSy0peQ"
+    }
+  ],
+  "appointments": [
+    {
+      "title": "meeting",
+      "date": "2026-08-29",
+      "description": "prepare MOM at the end of meeting",
+      "user_id": "john123",
+      "id": "pQBKOb_bpVk"
+    },
+    {
+      "title": "movie",
+      "date": "2026-08-30",
+      "description": "movie time",
+      "user_id": "john123",
+      "id": "vbqA1brl-vo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
