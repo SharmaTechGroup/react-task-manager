@@ -17,18 +17,25 @@
   ],
   "appointments": [
     {
-      "title": "meeting",
-      "date": "2026-08-29",
+      "id": "pQBKOb_bpVk",
+      "title": "Client Meeting",
       "description": "prepare MOM at the end of meeting",
-      "user_id": "john123",
-      "id": "pQBKOb_bpVk"
+      "date": "2026-08-29",
+      "user_id": "john123"
     },
     {
-      "title": "movie",
-      "date": "2026-08-30",
-      "description": "movie time",
+      "title": "birthday",
+      "description": "party @ 10PM",
+      "date": "2026-09-02",
       "user_id": "john123",
-      "id": "vbqA1brl-vo"
+      "id": "zmBL19QhIJ8"
+    },
+    {
+      "id": "NUEdM1E5n6E",
+      "title": "React Project",
+      "description": "Task Manager Project - Version-2",
+      "date": "2026-09-01",
+      "user_id": "sanjay_kumar"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
