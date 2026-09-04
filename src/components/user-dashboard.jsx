@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import moment from "moment/moment";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom";
 
@@ -15,13 +15,21 @@ export function UserDashboard(){
     const [appointments, setAppointments] = useState([{id:null, title:null, description:null, date:null, user_id:null}]);
     const [appointment, setAppointment] = useState({id:'', title:'', description:'', date:'', user_id:''});
 
-    function LoadAppointments(){
+    const LoadAppointments = useCallback(()=>{
+
         axios.get(`http://localhost:3000/appointments`)
         .then(response=>{
-             let user_appointments = response.data.filter(item=> item.user_id===cookies['userid']);
-             setAppointments(user_appointments);
+             setAppointments(response.data);
         })
-    }
+
+    },[appointments])
+
+    const filteredAppointments = useMemo(()=>{
+
+            return appointments.filter(appointment=> appointment.user_id===cookies['userid']);
+
+    },[cookies['userid'], appointments])
+
 
     useEffect(()=>{
         LoadAppointments();
@@ -82,6 +90,10 @@ export function UserDashboard(){
         }
     }
 
+    function handleSearchChange(e){
+        filteredAppointments.filter(appointment=> appointment.title.toLowerCase().includes(e.target.value.toLowerCase()));
+    }
+
 
     return(
         <div className="row p-2">
@@ -102,11 +114,15 @@ export function UserDashboard(){
             </div>
             <div className="col-10">
                 <div className="bg-light p-5 mt-4">
-                    Filter, Search
+                    <div>
+                        <div className="position-relative">
+                          <span className="bi position-absolute bi-search" style={{top:'5px', left:'10px'}}></span>  <input type="text" className="form-control ps-5" onChange={handleSearchChange} placeholder="search title" />
+                        </div>
+                    </div>
                 </div>
                 <div className="d-flex flex-wrap">
                     {
-                        appointments.map(appointment=>
+                        filteredAppointments.map(appointment=>
                             <div key={appointment.id} className="card m-2 p-2" style={{width:'400px'}}>
                                 <div className="card-header d-flex justify-content-between">
                                     <span className="text-uppercase fw-bold">{appointment.title}</span>

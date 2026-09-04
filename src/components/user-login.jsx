@@ -9,7 +9,6 @@ export function UserLogin(props){
     let navigate = useNavigate();
     const [cookies, setCookie, removeCookie] = useCookies(['username']);
 
-    let code = useCaptcha();
 
     const formik = useFormik({
         initialValues: {
@@ -44,8 +43,7 @@ export function UserLogin(props){
             <dd><input type='text' onChange={formik.handleChange} name="user_id" className='form-control' /></dd>
             <dt>Password</dt>
             <dd><input type='password' onChange={formik.handleChange} name="password" className='form-control' /></dd>
-            <dt>Verify Code</dt>
-            <dd>{code}</dd>
+           
             </dl>
             <button type="submit" className='btn btn-dark w-100'>Login</button>
         </form>
